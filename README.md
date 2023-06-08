@@ -5,11 +5,11 @@
 
 ### 1. Скопируйте репазиторий
 
-    $ git clone git@github.com:VladimirChernyy/Bewise.git
+    $ git clone git@github.com:VladimirChernyy/Bewise2.git
 
 ### 2. перейдите в директорию проекта
 
-    $ cd Bewise
+    $ cd Bewise2
 
 ### 3. Запустите docker-compose
 
