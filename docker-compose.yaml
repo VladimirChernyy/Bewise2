@@ -1,0 +1,27 @@
+version: "3.8"
+services:
+  db:
+    image: postgres:15.3
+    container_name: db_app
+    env_file:
+      - .env
+    volumes:
+      - db_app:/var/lib/postgresql/data
+
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - uploads:/uploads
+    env_file:
+      - .env
+    container_name: app
+    restart: always
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+volumes:
+  db_app:
+  uploads:
