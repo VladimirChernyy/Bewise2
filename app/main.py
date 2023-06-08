@@ -3,10 +3,11 @@ import os
 import shutil
 from uuid import uuid4, UUID
 
+
 from fastapi import (FastAPI, HTTPException, Form, File, Depends,
                      UploadFile, status)
 from fastapi.responses import FileResponse
-import ffmpeg
+from ffmpeg import input
 from sqlalchemy.orm.session import Session
 
 from database import get_db
@@ -47,12 +48,12 @@ def wav_to_mp3(audio_file: File, audio_id: UUID) -> dict:
         try:
             with open(audio_path, 'wb') as file:
                 shutil.copyfileobj(audio_file.file, file)
-            ffmpeg.input(audio_path).output(mp3_path).run()
+            input(audio_path).output(mp3_path).run()
             return {
                 'mp3_path': mp3_path,
                 'audio_path': audio_path,
             }
-        except ffmpeg.Error as e:
+        except Exception as e:
             logging.error(e)
             raise e
     message = 'Неверный формат аудио'

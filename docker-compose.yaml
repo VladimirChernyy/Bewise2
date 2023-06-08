@@ -9,9 +9,7 @@ services:
       - db_app:/var/lib/postgresql/data
 
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     volumes:
       - uploads:/uploads
     env_file:
